@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<Configuration status="INFO">
+    <Appenders>
+        <Console name="Console" target="SYSTEM_OUT">
+            <PatternLayout>
+                <Pattern>[%d{yyyy-MM-dd HH:mm:ss}] %-5p %m%n</Pattern>
+            </PatternLayout>
+        </Console>
+        <File name="myBotFile" filename="myBot${date:yyyy-MM-dd}.log" append="true">
+            <PatternLayout>
+                <Pattern>[%d{yyyy-MM-dd HH:mm:ss}] %-5p %m%n</Pattern>
+            </PatternLayout>
+        </File>
+    </Appenders>
+    <Loggers>
+        <Logger name="org.bot.App" level="INFO">
+            <AppenderRef ref="myBotFile"/>
+        </Logger>
+        <Root level="INFO">
+            <AppenderRef ref="myBotFile"/>
+        </Root>
+    </Loggers>
+</Configuration>
