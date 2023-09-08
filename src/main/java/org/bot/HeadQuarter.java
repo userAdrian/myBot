@@ -131,21 +131,19 @@ public class HeadQuarter extends Thread {
                 this.sendMessagePhoto(chat_id, array[0], "welcome.webp", array[1]);
                 break;
             case ("/reloadFilePhrases"):
-                if (admins.contains(m.getFrom().getId()))
+                if (admins.contains(m.getFrom().getId())) {
                     phrases = readFilePhrases();
                     utilities.sendMessage(chat_id, "File reloaded");
+                }
                 break;
             case ("/randomPhrase"):
                 Person p = persons.get(m.getFrom().getId());
                 long time_now = Calendar.getInstance().getTimeInMillis();
-                long dif = time_now - p.getCooldown();
-                Date date = new Date(time_now + dif);
-
-                if(dif > 0) {
+                if(time_now - p.getCooldown() > 0) {
                     p.setCooldown(time_now + COOLDOWN);
                     utilities.sendMessage(chat_id, p.getRandomPhrase());
                 }else{
-                    utilities.sendMessage(chat_id, "This command is on cooldown until " + date);
+                    utilities.sendMessage(chat_id, "This command is on cooldown until " + new Date(p.getCooldown()));
                 }
                 break;
         }

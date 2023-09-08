@@ -63,7 +63,7 @@ public class Person implements java.io.Serializable{
             //reload phrases_index if there is no more
             if(phrases_index.isEmpty())
                 phrases_index = HeadQuarter.getPhrasesIndex(phrases);
-        }while(number_phrase < phrases.size()); //check if number_phrase falls within phrases indexes to avoid IndexOutOfBoundsException
+        }while(number_phrase >= phrases.size()); //check if number_phrase falls within phrases indexes to avoid IndexOutOfBoundsException
 
         statistics.setTotal_phrases(statistics.getTotal_phrases() + 1); //total phrases sent
         statistics.putAuthor(phrases.get(number_phrase).getAuthor());
